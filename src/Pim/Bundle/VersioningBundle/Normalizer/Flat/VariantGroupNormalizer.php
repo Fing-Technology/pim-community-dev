@@ -6,7 +6,7 @@ use Pim\Component\Catalog\Model\GroupInterface;
 use Pim\Component\Catalog\Normalizer\Standard\VariantGroupNormalizer as BaseNormalizer;
 
 /**
- * A normalizer to transform a group entity into a flat array
+ * A normalizer to transform a variant group entity into a flat array
  *
  * @author    Samir Boulil <samir.boulil@akeneo.com>
  * @copyright 2016 Akeneo SAS (http://www.akeneo.com)
@@ -72,9 +72,9 @@ class VariantGroupNormalizer extends BaseNormalizer
     {
         $flatValues = [];
 
-        foreach ($variantGroupValues as $attributeName => $variantGroupValue) {
+        foreach ($variantGroupValues as $attributeCode => $variantGroupValue) {
             $flatValues += $this->productValueNormalizer->normalize(
-                [$attributeName => $variantGroupValue],
+                [$attributeCode => $variantGroupValue],
                 'flat',
                 $context
             );
