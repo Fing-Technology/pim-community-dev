@@ -49,7 +49,7 @@ class AttributeGroupIntegration extends TestCase
             ],
             'labels'     => [
                 'en_US' => 'Attribute group B',
-                'fr_FR' => null
+                'fr_FR' => 'Groupe d\'attribut B'
             ]
         ];
 
