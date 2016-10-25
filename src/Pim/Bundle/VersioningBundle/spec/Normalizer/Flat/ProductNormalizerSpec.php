@@ -91,17 +91,6 @@ class ProductNormalizerSpec extends ObjectBehavior
                         'data'   => '12',
                     ],
                 ],
-            ],
-            'flat',
-            Argument::cetera()
-        )->willReturn(
-            [
-                'sku' => '12',
-            ]
-        );
-
-        $productValueNormalizerFlat->normalize(
-            [
                 'description' => [
                     [
                         'locale' => 'fr_FR',
@@ -109,17 +98,6 @@ class ProductNormalizerSpec extends ObjectBehavior
                         'data'   => 'VNeck t-shirt',
                     ],
                 ],
-            ],
-            'flat',
-            Argument::cetera()
-        )->willReturn(
-            [
-                'description-fr_FR' => 'VNeck t-shirt',
-            ]
-        );
-
-        $productValueNormalizerFlat->normalize(
-            [
                 'price' => [
                     [
                         'locale' => 'fr_FR',
@@ -132,12 +110,13 @@ class ProductNormalizerSpec extends ObjectBehavior
                         ],
                     ],
                 ],
-
             ],
             'flat',
             Argument::cetera()
         )->willReturn(
             [
+                'sku' => '12',
+                'description-fr_FR' => 'VNeck t-shirt',
                 'price-fr_FR'      => '10.00',
                 'price-unit-fr_FR' => 'EUR',
             ]
