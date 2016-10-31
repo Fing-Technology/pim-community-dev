@@ -50,15 +50,24 @@ class FileComparator implements ComparatorInterface
             return null;
         }
 
-        // compare a local file and a stored file (can happen during an import for instance)
-        if (isset($data['data']) &&
-            isset($originals['data']) &&
-            is_file($data['data'])
-        ) {
+        // compare a local or stored file with a stored file (can happen during an import for instance)
+        if (isset($data['data']) && isset($originals['data'])) {
             $originalFile = $this->repository->findOneByIdentifier($originals['data']);
-            if (null !== $originalFile &&
-                $originalFile->getHash() === $this->getHashFile($data['data'])) {
+
+            if (is_file($data['data']) &&
+                null !== $originalFile &&
+                $originalFile->getHash() === $this->getHashFile($data['data'])
+            ) {
                 return null;
+            } else {
+                $file = $this->repository->findOneByIdentifier($data['data']);
+
+                if (null !== $file &&
+                    null !== $originalFile &&
+                    $file->getHash() === $originals->getHash()
+                ) {
+                    return null;
+                }
             }
         }
 
